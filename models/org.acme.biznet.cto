@@ -1,31 +1,36 @@
-/**
- * My commodity trading network
- */
 namespace org.acme.biznet
-asset Commodity identified by tradingSymbol {
-    o String tradingSymbol
-    o String description
-    o String mainExchange
-    o Double quantity
-    --> Trader owner
-}
-participant Trader identified by tradeId {
-    o String tradeId
-    o String firstName
-    o String lastName
-}
-transaction Trade {
-    --> Commodity commodity
-    --> Trader newOwner
+
+participant Plant identified by plantId {
+    o String plantId
+    o Integer maxCap
+    o Integer rangeCap
+    o Integer areadId default = 80377
 }
 
-event TradeNotification {
-    --> Commodity commodity
+participant Operator identified by operatorId {
+    o String operatorId
+    o Integer demand default = 50
+    o Integer areadId default = 80377
 }
 
-transaction RemoveHighQuantityCommodities {
+asset EnergyProduction identified by energyProductionId {
+    o String energyProductionId
+    o Integer currentCap
+    --> Plant production
 }
 
-event RemoveNotification {
-    --> Commodity commodity
+asset EnergyReductionCompensation identified by compensationId {
+  o String compensationId
+  o Integer reductionAmount
+  o Boolean paid default = false
+  --> Plant owner 
+}
+
+transaction ReportProduction {
+  --> EnergyProduction energyProductOld
+  --> EnergyProduction energyProductNew
+}
+
+event ReportProductionNotification {
+     --> EnergyProduction energyProduction
 }
