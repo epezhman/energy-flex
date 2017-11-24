@@ -16,7 +16,9 @@ participant Operator identified by operatorId {
 asset EnergyProduction identified by energyProductionId {
     o String energyProductionId
     o Integer currentCap
-    --> Plant production
+    o String createdHourMinute
+    o Integer areadId
+    --> Plant owner
 }
 
 asset EnergyReductionCompensation identified by compensationId {
@@ -26,11 +28,10 @@ asset EnergyReductionCompensation identified by compensationId {
   --> Plant owner 
 }
 
-transaction ReportProduction {
-  --> EnergyProduction energyProductOld
-  --> EnergyProduction energyProductNew
+transaction EnergyReported {
+  --> EnergyProduction energyProduct
 }
 
-event ReportProductionNotification {
-     --> EnergyProduction energyProduction
+event RequiredReduction {
+      o Integer requiredEnergyReduction
 }

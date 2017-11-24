@@ -1,0 +1,7 @@
+
+
+query selectAllPlantsInArea {
+  description: "Select all energy production in the same area"
+  statement:
+      SELECT org.acme.biznet.EnergyProduction
+}

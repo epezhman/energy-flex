@@ -18,5 +18,9 @@
     "istanbul": "latest",
     "mkdirp": "latest",
     "mocha": "latest"
+  },
+  "dependencies": {
+    "request": "^2.83.0",
+    "uuid": "^3.1.0"
   }
 }
