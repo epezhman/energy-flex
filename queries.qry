@@ -4,4 +4,12 @@ query selectAllPlantsInArea {
   description: "Select all energy production in the same area"
   statement:
       SELECT org.acme.biznet.EnergyProduction
+          WHERE (createdHourMinute == _$createdHourMinute AND areadId == _$areadId)
+}
+
+query selectAllProposalsInArea {
+  description: "Select all reduction Proposals in Area"
+  statement:
+      SELECT org.acme.biznet.EnergyReductionCompensation
+          WHERE (createdHourMinute == _$createdHourMinute AND areadId == _$areadId)
 }

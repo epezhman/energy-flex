@@ -4,20 +4,19 @@ participant Plant identified by plantId {
     o String plantId
     o Integer maxCap
     o Integer rangeCap
-    o Integer areadId default = 80377
+    o Integer dareadId default = 80377
 }
 
 participant Operator identified by operatorId {
     o String operatorId
-    o Integer demand default = 50
     o Integer areadId default = 80377
 }
 
 asset EnergyProduction identified by energyProductionId {
     o String energyProductionId
     o Integer currentCap
-    o String createdHourMinute
-    o Integer areadId
+    o String createdHourMinute optional
+    o Integer areadId optional
     --> Plant owner
 }
 
@@ -25,13 +24,33 @@ asset EnergyReductionCompensation identified by compensationId {
   o String compensationId
   o Integer reductionAmount
   o Boolean paid default = false
+  o Boolean approvedByProvider default = false
+  o String createdHourMinute optional
+  o Integer areadId optional
   --> Plant owner 
 }
 
 transaction EnergyReported {
   --> EnergyProduction energyProduct
+  o Integer requiredCapacitiy
 }
 
 event RequiredReduction {
       o Integer requiredEnergyReduction
+      o Integer areadId optional
+}
+
+transaction EnergyProductionProposalReported {
+  --> EnergyReductionCompensation compensationProposal
+  o Integer requiredCapacitiy
+}
+
+event ProposalApproved {
+      o Boolean proposalApproved
+      --> Plant powerPlant 
+      o String proposalId
+}
+
+event TestEvent {
+      o String eventStat
 }

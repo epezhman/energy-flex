@@ -9,11 +9,11 @@
   "email": "epezhman@gmail.com",
   "license": "Apache-2.0",
   "devDependencies": {
+    "chai": "latest",
     "composer-admin": "latest",
-    "composer-client": "latest",
+    "composer-client": "^0.15.2",
     "composer-common": "latest",
     "composer-connector-embedded": "latest",
-    "chai": "latest",
     "eslint": "latest",
     "istanbul": "latest",
     "mkdirp": "latest",
